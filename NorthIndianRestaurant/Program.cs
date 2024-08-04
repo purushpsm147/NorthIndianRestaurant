@@ -1,3 +1,7 @@
+using Microsoft.EntityFrameworkCore;
+using NorthIndianRestaurant.Models;
+using NorthIndianRestaurant.Services;
+
 namespace NorthIndianRestaurant
 {
     public class Program
@@ -8,6 +12,12 @@ namespace NorthIndianRestaurant
 
             // Add services to the container.
             builder.Services.AddControllersWithViews();
+
+            builder.Services.AddDbContext<RestaurantReservationDBContext>(options =>
+            {
+                var mongoDBSettings = builder.Configuration.GetSection(nameof(MongoDBSettings)).Get<MongoDBSettings>();
+                options.UseMongoDB(mongoDBSettings.AtlasURI ?? "", mongoDBSettings.DatabaseName ?? "");
+            });
 
             var app = builder.Build();
 
