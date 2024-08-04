@@ -19,6 +19,9 @@ namespace NorthIndianRestaurant
                 options.UseMongoDB(mongoDBSettings.AtlasURI ?? "", mongoDBSettings.DatabaseName ?? "");
             });
 
+            builder.Services.AddScoped<IRestaurantService, RestaurantService>();
+            builder.Services.AddScoped<IReservationService, ReservationService>();
+
             var app = builder.Build();
 
             // Configure the HTTP request pipeline.
@@ -38,7 +41,7 @@ namespace NorthIndianRestaurant
 
             app.MapControllerRoute(
                 name: "default",
-                pattern: "{controller=Home}/{action=Index}/{id?}");
+                pattern: "{controller=Restaurant}/{action=Index}/{id?}");
 
             app.Run();
         }

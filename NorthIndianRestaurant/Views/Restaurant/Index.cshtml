@@ -1,0 +1,51 @@
+﻿@model RestaurantListViewModel
+
+@if (TempData["RestaurantDeleted"] != null)
+{
+    <p class="text-success">@TempData["RestaurantDeleted"]</p>
+}
+
+
+@if (!Model.Restaurants.Any())
+{
+    <p>No results</p>
+}
+else
+{
+    <table class="table table-condensed table-bordered">
+        <tr>
+            <th>
+                Name
+            </th>
+            <th>
+                Cuisine
+            </th>
+            <th>
+                Borough
+            </th>
+            <th>
+                Actions
+            </th>
+        </tr>
+
+        @foreach (var restaurant in Model.Restaurants)
+        {
+            <tr>
+                <td>@restaurant.name</td>
+                <td>@restaurant.cuisine</td>
+                <td>@restaurant.borough</td>
+                <td>
+                    <a asp-action="Edit" asp-route-id="@restaurant.Id.ToString()">Edit</a>
+                    <a asp-action="Delete" asp-route-id="@restaurant.Id.ToString()">Delete</a>
+                    <a asp-controller="Reservation" asp-action="Add" asp-route-restaurantId="@restaurant.Id.ToString()">Reserve</a>
+                </td>
+            </tr>
+        }
+
+    </table>
+}
+
+<p>
+    <a class="btn btn-primary" asp-action="Add">Add new restaurant</a>
+</p>
+

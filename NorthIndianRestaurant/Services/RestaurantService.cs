@@ -56,7 +56,7 @@ public class RestaurantService(RestaurantReservationDBContext restaurantReservat
         }
     }
 
-    public async Task<Restaurant?> GetRestaurant(ObjectId id)
+    public async Task<Restaurant?> GetRestaurantById(ObjectId id)
     {
         return await _restaurantReservationDBContext.Restaurants.FindAsync(id);
     }

@@ -1,0 +1,20 @@
+﻿@model ReservationAddViewModel
+
+@if (ViewData["ErrorMessage"] != null)
+{
+    <p class="text-danger">@ViewData["ErrorMessage"]</p>
+}
+
+<form method="post" asp-controller="Reservation" asp-action="Add">
+    <div asp-validation-summary="All" class="text-danger"></div>
+    <input type="hidden" asp-for="Reservation.Id" />
+    <input type="hidden" asp-for="Reservation.RestaurantId" />
+
+    <div class="mb-3">
+        <label asp-for="Reservation.date" class="form-label"></label>
+        <input asp-for="Reservation.date" type="datetime-local" class="form-control" value="@DateTime.Now.ToString("yyyy-MM-ddTHH:mm")" />
+        <span asp-validation-for="Reservation.date" class="text-danger"></span>
+    </div>
+
+    <input type="submit" value="Reserve table" class="btn btn-primary" />
+</form>

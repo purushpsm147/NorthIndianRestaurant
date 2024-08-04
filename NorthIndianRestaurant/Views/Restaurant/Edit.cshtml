@@ -1,0 +1,29 @@
+﻿@model Restaurant
+
+<h2>Update @Model.name</h2>
+<hr />
+
+<form method="post" asp-controller="Restaurant" asp-action="Edit">
+    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+    <input type="hidden" asp-for="Id" />
+
+    <div class="mb-3">
+        <label asp-for="name" class="form-label">Name</label>
+        <input asp-for="name" class="form-control" />
+        <span asp-validation-for="name" class="text-danger" />
+    </div>
+    <div class="mb-3">
+        <label asp-for="cuisine" class="form-label"></label>
+        <input asp-for="cuisine" class="form-control" />
+        <span asp-validation-for="cuisine" class="text-danger" />
+    </div>
+    <div class="mb-3">
+        <label asp-for="borough" class="form-label">Borough</label>
+        <input asp-for="borough" class="form-control" />
+        <span asp-validation-for="borough" class="text-danger" />
+    </div>
+    <input type="submit" value="Update restaurant" class="btn btn-primary" />
+</form>
+<div>
+    <a asp-controller="Restaurant" asp-action="Index">Back to list</a>
+</div>
